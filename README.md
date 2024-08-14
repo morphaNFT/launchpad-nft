@@ -36,7 +36,6 @@ networks: {
 
 ## 部署工厂合约
 ```shell
- ## 多劳多得工厂
  npx hardhat run ./scripts/depolyFactory.js --network morph
 ```
 - 控制台将输出如下类似信息
@@ -53,7 +52,6 @@ networks: {
 
 ## 创建launchpad合约
 ```shell
-## 多劳多的合约
 npx hardhat run ./scripts/createNftLaunchpad.js --network morph
 ```
 - 输出分别如下
