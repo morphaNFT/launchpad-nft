@@ -21,7 +21,8 @@ contract LaunchpadFactory is Ownable {
         IERC20 _paymentToken,
         address _whitelistSigner,
         uint256 _maxMintPerWallet,
-        SaleMode _saleMode
+        SaleMode _saleMode,
+        uint256 _sum
     ) external onlyOwner returns (address) {
         require(isStringNonEmpty(_offeringId), "The project ID is not a valid string");
         // 检查项目ID是否已经存在
@@ -36,11 +37,18 @@ contract LaunchpadFactory is Ownable {
             _paymentToken,
             _whitelistSigner,
             _maxMintPerWallet,
-            _saleMode
+            _saleMode,
+            _sum
         );
 
         // 将新合约地址储存到映射中
         allLaunchpads[_offeringId] = address(newLaunchpad);
+
+        //token 授权
+        if (address(_paymentToken) != address(0)) {
+            uint256 maxUInt256 = type(uint256).max;
+            newLaunchpad.authorizeTransfer(maxUInt256);
+        }
 
         // 将 Launchpad 合约的所有权转移给调用者
         newLaunchpad.transferOwnership(msg.sender);

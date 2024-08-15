@@ -26,7 +26,8 @@ async function main() {
         config.project.paymentToken,
         config.project.whitelistSigner,
         config.project.maxMintPerWallet,
-        config.project.saleMode
+        config.project.saleMode,
+        config.project.sum
     )
     await txCreateLaunchpad.wait()
     console.log("txCreateLaunchpad:", txCreateLaunchpad.hash)

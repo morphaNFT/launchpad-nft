@@ -3,18 +3,19 @@
     "privateKey": "4f0131975141c8a3115d7d3af648c1ea4ec4e16d406c091ee9dfb7b106d55701"
   },
   "project": {
-    "offeringId": "PandaG03",
-    "targetNFT": "PDA",
-    "startTime": "1722614348",
-    "publicSaleTime": "1722614448",
-    "mintPrice": "500000000000000000",
-    "paymentToken": "0x0000000000000000000000000000000000000000",
-    "whitelistSigner": "0x247098dFFc21a8A6A6A62d1461C36B54b1db92Fa",
-    "maxMintPerWallet": 3,
-    "saleMode": 2
+    "offeringId": "PandaG01",
+    "targetNFT": "0x334CE056Cc565Acc1c958b370A710F14D99d6051",
+    "startTime": "1723690800",
+    "publicSaleTime": "1723690800",
+    "mintPrice": "1000000000000000000",
+    "paymentToken": "0x2b8A379117F65B9aDF4DAD801390dF9529000c97",
+    "whitelistSigner": "0x2A51A912071B31bFE8e824FCd9a4BbA3C7eED04b",
+    "maxMintPerWallet": 6,
+    "saleMode": 0,
+    "sum": 10
   },
   "contracts": {
-    "launchpad": "0xC9c70B39A3a9aeD278Aa54116D7e937Cb3A5fb20",
-    "launchpadFactory": "0xB9876971d6Dd0B2495a4Dbdd500dbC1939A2dCd2"
+    "launchpad": "0x9531a2c0B2c3dC4a16d5eb991b5d5975A05B8480",
+    "launchpadFactory": "0xd383E8159699E2EEd41D854f9fdcE62927835A9F"
   }
 }

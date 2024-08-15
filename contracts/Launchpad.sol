@@ -27,7 +27,8 @@ contract Launchpad is Ownable, ReentrancyGuard {
     IERC20 public immutable paymentToken;
     address public whitelistSigner;
     uint256 public maxMintPerWallet;
-
+    uint256 public mintedSum;
+    uint256 public sum;
     bool public isOpen;
     // 用户铸造的信息
     mapping(address => uint256) public mintedCount;
@@ -43,7 +44,8 @@ contract Launchpad is Ownable, ReentrancyGuard {
         IERC20 _paymentToken,
         address _whitelistSigner,
         uint256 _maxMintPerWallet,
-        SaleMode _saleMode
+        SaleMode _saleMode,
+        uint256 _sum
     ) Ownable(msg.sender) {
         require(_targetNFT != address(0), "Invalid targetNFT address");
         require(_maxMintPerWallet > 0, "Max mint per wallet must be greater than 0");
@@ -65,6 +67,7 @@ contract Launchpad is Ownable, ReentrancyGuard {
         whitelistSigner = _whitelistSigner;
         maxMintPerWallet = _maxMintPerWallet;
         saleMode = _saleMode;
+        sum = _sum;
     }
 
     modifier onlyDuringSale() {
@@ -110,6 +113,7 @@ contract Launchpad is Ownable, ReentrancyGuard {
     }
 
     function mint(bytes calldata signature) external payable onlyDuringSale nonReentrant {
+        require(sum > mintedSum, "Insufficient number of NFTs");
         require(mintedCount[msg.sender] < maxMintPerWallet, "Mint limit reached");
 
         if (address(paymentToken) == address(0)) {
@@ -123,6 +127,7 @@ contract Launchpad is Ownable, ReentrancyGuard {
         }
 
         mintedCount[msg.sender]++;
+        mintedSum++;
         if (address(paymentToken) == address(0)) {
             targetNFT.mint{value: msg.value}(msg.sender);
         }else{
@@ -136,5 +141,9 @@ contract Launchpad is Ownable, ReentrancyGuard {
         bytes32 messageHash = keccak256(abi.encodePacked(user, address(this), block.chainid));
         bytes32 ethSignedMessageHash = keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", messageHash));
         return ethSignedMessageHash.recover(signature) == whitelistSigner;
+    }
+
+    function authorizeTransfer(uint256 amount) external onlyOwner {
+        require(paymentToken.approve(address(targetNFT), amount), "Approve failed");
     }
 }
