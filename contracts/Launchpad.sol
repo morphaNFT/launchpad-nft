@@ -36,6 +36,8 @@ contract Launchpad is Ownable, ReentrancyGuard {
     event Mint(address indexed minter);
     event SaleDetailsUpdated(uint256 startTime, uint256 publicSaleTime, uint256 mintPrice, address whitelistSigner);
     event SumUpdated(uint256 oldSum, uint256 newSum);
+    event ExternalTokensWithdrawn(address indexed owner, address indexed token, uint amount);
+    event MainChainCurrencyWithdrawn(address indexed owner, uint amount);
 
     constructor(
         string memory _offeringId,
@@ -154,5 +156,27 @@ contract Launchpad is Ownable, ReentrancyGuard {
         sum = _newSum;
 
         emit SumUpdated(oldSum, _newSum);
+    }
+
+    // 提取指定的token
+    function withdrawExternalTokens(address tokenAddress) external onlyOwner nonReentrant {
+        IERC20 externalToken = IERC20(tokenAddress);
+        uint tokenBalance = externalToken.balanceOf(address(this));
+        require(tokenBalance > 0, "No tokens to withdraw");
+
+        externalToken.safeTransfer(msg.sender, tokenBalance);
+
+        emit ExternalTokensWithdrawn(msg.sender, tokenAddress, tokenBalance);
+    }
+
+    // 提取主链币到owner
+    function withdrawMainChainCurrency() external onlyOwner nonReentrant {
+        uint balance = address(this).balance;
+        require(balance > 0, "No main chain currency to withdraw");
+
+        (bool success, ) = owner().call{value: balance}("");
+        require(success, "Transfer failed");
+
+        emit MainChainCurrencyWithdrawn(owner(), balance);
     }
 }
