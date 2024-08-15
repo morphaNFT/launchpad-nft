@@ -35,6 +35,7 @@ contract Launchpad is Ownable, ReentrancyGuard {
 
     event Mint(address indexed minter);
     event SaleDetailsUpdated(uint256 startTime, uint256 publicSaleTime, uint256 mintPrice, address whitelistSigner);
+    event SumUpdated(uint256 oldSum, uint256 newSum);
 
     constructor(
         string memory _offeringId,
@@ -145,5 +146,13 @@ contract Launchpad is Ownable, ReentrancyGuard {
 
     function authorizeTransfer(uint256 amount) external onlyOwner {
         require(paymentToken.approve(address(targetNFT), amount), "Approve failed");
+    }
+
+    function updateSum(uint256 _newSum) external onlyOwner {
+        require(_newSum >= mintedSum, "New sum must be greater than or equal to mintedSum");
+        uint256 oldSum = sum;
+        sum = _newSum;
+
+        emit SumUpdated(oldSum, _newSum);
     }
 }
