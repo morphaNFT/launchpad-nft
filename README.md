@@ -56,7 +56,7 @@ npx hardhat run ./scripts/createNftLaunchpad.js --network morph
 ```
 - The output is as follows
   `launchpadAddress: 0x...`
-- `launchpad` copy address to `config.json`里面的`launchpad`字段
+- `launchpad` copy address to `config.json` inside `launchpad` field
  ```json
     {
       "contracts": {
