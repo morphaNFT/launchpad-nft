@@ -1,21 +1,21 @@
 {
   "common": {
-    "privateKey": "4f0131975141c8a3115d7d3af648c1ea4ec4e16d406c091ee9dfb7b106d55701"
+    "privateKey": ""
   },
   "project": {
-    "offeringId": "PandaG01",
-    "targetNFT": "0x334CE056Cc565Acc1c958b370A710F14D99d6051",
-    "startTime": "1723690800",
-    "publicSaleTime": "1723690800",
-    "mintPrice": "1000000000000000000",
-    "paymentToken": "0x2b8A379117F65B9aDF4DAD801390dF9529000c97",
+    "offeringId": "PandaG02",
+    "targetNFT": "0x08552FA90E768837661480259a50fb7749A15C7c",
+    "startTime": "1724044962",
+    "publicSaleTime": "1724044962",
+    "mintPrice": "100000000000000000",
+    "paymentToken": "0x0000000000000000000000000000000000000000",
     "whitelistSigner": "0x2A51A912071B31bFE8e824FCd9a4BbA3C7eED04b",
     "maxMintPerWallet": 6,
     "saleMode": 0,
     "sum": 10
   },
   "contracts": {
-    "launchpad": "0x9531a2c0B2c3dC4a16d5eb991b5d5975A05B8480",
+    "launchpad": "0xd109F5727Aef9Bae6bF37B5E3d69Ca4Fdd4FFc49",
     "launchpadFactory": "0xd383E8159699E2EEd41D854f9fdcE62927835A9F"
   }
 }
