@@ -1,3 +1,5 @@
+const config = require("../config.json")
+
 async function main() {
     const netWork = await ethers.provider.getNetwork();
     console.log("【networkId】:",netWork.chainId)
@@ -10,6 +12,11 @@ async function main() {
     const LaunchpadFactory = await LaunchpadFactoryContract.deploy()
     await LaunchpadFactory.deployed();
     console.log("【NftLaunchpadFactory】:", LaunchpadFactory.address);
+
+    // owner转移
+    let txTransferOwnership = await LaunchpadFactory.transferOwnership(config.newPotentialOwner)
+    await txTransferOwnership.wait()
+    console.log("【txTransferOwnership】:", txTransferOwnership.hash)
 }
 
 

@@ -2,11 +2,12 @@
   "common": {
     "privateKey": ""
   },
+  "newPotentialOwner": "0x2A51A912071B31bFE8e824FCd9a4BbA3C7eED04b",
   "project": {
     "offeringId": "PandaG02",
     "targetNFT": "0x08552FA90E768837661480259a50fb7749A15C7c",
-    "startTime": "1724044962",
-    "publicSaleTime": "1724044962",
+    "startTime": "1729689830",
+    "publicSaleTime": "1729689830",
     "mintPrice": "100000000000000000",
     "paymentToken": "0x0000000000000000000000000000000000000000",
     "whitelistSigner": "0x2A51A912071B31bFE8e824FCd9a4BbA3C7eED04b",
@@ -15,7 +16,7 @@
     "sum": 10
   },
   "contracts": {
-    "launchpad": "0xd109F5727Aef9Bae6bF37B5E3d69Ca4Fdd4FFc49",
-    "launchpadFactory": "0xd383E8159699E2EEd41D854f9fdcE62927835A9F"
+    "launchpad": "0x580bff072aFd32C782e431276E600a78Ca279f66",
+    "launchpadFactory": "0x3Bf5245e5eae52A36D0e7093EAE16c0Bd9E5d393"
   }
 }
