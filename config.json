@@ -2,7 +2,7 @@
   "common": {
     "privateKey": ""
   },
-  "newPotentialOwner": "0x2A51A912071B31bFE8e824FCd9a4BbA3C7eED04b",
+  "newPotentialOwner": "",
   "project": {
     "offeringId": "PandaG02",
     "targetNFT": "0x08552FA90E768837661480259a50fb7749A15C7c",
