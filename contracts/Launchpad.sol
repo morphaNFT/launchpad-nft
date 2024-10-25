@@ -38,6 +38,8 @@ contract Launchpad is Ownable, ReentrancyGuard {
     event SumUpdated(uint256 oldSum, uint256 newSum);
     event ExternalTokensWithdrawn(address indexed owner, address indexed token, uint amount);
     event MainChainCurrencyWithdrawn(address indexed owner, uint amount);
+    event ProjectOpened();
+    event ProjectClosed();
 
     constructor(
         string memory _offeringId,
@@ -109,10 +111,14 @@ contract Launchpad is Ownable, ReentrancyGuard {
     function open() external onlyOwner {
         require(!isOpen, "Project already open");
         isOpen = true;
+
+        emit ProjectOpened();
     }
 
     function close() external onlyOwner {
         isOpen = false;
+
+        emit ProjectClosed();
     }
 
     function mint(bytes calldata signature) external payable onlyDuringSale nonReentrant {
